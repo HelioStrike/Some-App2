@@ -3,7 +3,6 @@ import {Alert, Platform, StyleSheet, Text, View, Image, Button, Linking } from '
 import Bananas from './utils/Bananas';
 import firebase from 'firebase';
 import { showLocation } from 'react-native-map-link'
-import LinearGradient from 'react-native-linear-gradient';
 
 export default class DonationScreen extends React.Component {
 
@@ -72,37 +71,26 @@ export default class DonationScreen extends React.Component {
     const info = this.state.donation;
     if(this.state.hasDonation) {
         return (
-            <LinearGradient
-            colors={['#00FFFF', '#17C8FF', '#329BFF', '#4C64FF', '#6536FF', '#8000FF']}
-            start={{x: 0.0, y: 1.0}} end={{x: 1.0, y: 0.0}}
-            style={styles.container}>
-                <Text>{JSON.stringify(this.state.donation)}</Text>
-                <View style={styles.card}>  
-                    <Text style={styles.show}>  
-                       Distributor PhoneNo: {info.distPhoneno}
-                    </Text>
-                    <Text style={styles.show}>
-                       Donor PhoneNo: {info.donorPhoneno}
-                    </Text>
-                    <Text style={styles.show}>
-                        Food Units: {info.foodUnits}
-                    </Text>
-                    <View style={styles.btnContainer}>
-                        <Button
-                        title="Directions to donor"
-                        onPress={this.openMap.bind(this)}
-                        />
-                    </View>
-                    <View style={styles.btnContainer}>
-                        <Button
-                        title="Directions to distributor"
-                        onPress={this.openMap2.bind(this)}
-                        />
-                    </View>
-                    
-                </View>
+            <View style={styles.container}>
+                <Text><Text style={styles.field}>Donor Phone:</Text> {info.donorPhoneno}</Text>
+                <Text><Text style={styles.field}>Distributor Phone:</Text> {info.distPhoneno}</Text>
+                <Text><Text style={styles.field}>Food Units:</Text> {info.foodUnits}</Text>
 
-            </LinearGradient>
+                <View style={styles.btnContainer}>
+                    <Button
+                    title="Directions to donor"
+                    onPress={this.openMap.bind(this)}
+                    />
+                </View>
+                <View style={styles.btnContainer}>
+                    <Button
+                    title="Directions to distributor"
+                    onPress={this.openMap2.bind(this)}
+                    />
+                </View>
+                
+
+            </View>
         );    
     } else {
         return (
